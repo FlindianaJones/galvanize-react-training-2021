@@ -1,23 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-
+const cars = ['car 1', 'car 2', 'car 3', 'car 4', 'car 5'];
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <header data-testid="header">Auriga Car Company</header>
+      {cars.map((car, index) => (
+        <li key={`list-item-${index}`} data-testid="list-item">
+          {car}
+        </li>
+      ))}
     </div>
   );
 }

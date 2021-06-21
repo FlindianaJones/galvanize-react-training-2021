@@ -1,8 +1,15 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe('App', () => {
+  it('should have a header', () => {
+    render(<App />);
+    const header = screen.getByTestId(/header/i);
+    expect(header).toBeInTheDocument();
+  });
+  it('should have an inventory', () => {
+    render(<App />);
+    const listItems = screen.getAllByTestId(/list-item/i);
+    expect(listItems).toHaveLength(5);
+  });
 });

@@ -18,6 +18,11 @@ form label {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+}
+form input {
+  padding: 0.5rem;
+  width: 85%;
 }
 form button {
   margin: 1rem;

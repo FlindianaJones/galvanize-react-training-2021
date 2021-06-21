@@ -2,14 +2,14 @@ body {
   margin: 2rem;
 }
 header {
-  background-color: darkcyan;
+  background-color: rebeccapurple;
   color: white;
   font-size: 2rem;
   padding: 2rem;
   margin-bottom: 1rem;
 }
 form {
-  background-color: lightgrey;
+  background-color: ghostwhite;
   display: flex;
   flex-direction: column;
 }
@@ -27,9 +27,11 @@ form input {
 form button {
   margin: 1rem;
   padding: 1rem;
-  background-color: darkcyan;
+  background-color: rebeccapurple;
   color: white;
   flex: 0;
+  font-weight: bolder;
+  font-size: 1rem;
 }
 li {
   list-style: none;

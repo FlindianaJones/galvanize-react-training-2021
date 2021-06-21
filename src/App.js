@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className="App">
-      <header data-testid="header">Auriga Car Company</header>
+      <header data-testid="header">Auriga Chariots</header>
       <form onSubmit={handleSearchSubmit}>
         <label>
           Make:

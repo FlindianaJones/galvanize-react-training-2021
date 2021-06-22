@@ -49,11 +49,11 @@ const AppContent = () => {
       </form>
       <section>
         {(cars || [])
-          .filter((car) => !searchParams.make || car.make === searchParams.make)
+          .filter((car) => !searchParams.make || car.make.toLowerCase().includes(searchParams.make.toLowerCase()))
           .filter(
-            (car) => !searchParams.model || car.model === searchParams.model
+            (car) => !searchParams.model || car.model.toLowerCase().includes(searchParams.model.toLowerCase()) 
           )
-          .filter((car) => !searchParams.year || car.year === searchParams.year)
+          .filter((car) => !searchParams.year || car.year.toString().includes(searchParams.year.toString()))
           .map((car, index) => (
             <CarListItem {...car} />
           ))}

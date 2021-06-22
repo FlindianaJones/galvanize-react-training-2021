@@ -33,9 +33,19 @@ form button {
   font-weight: bolder;
   font-size: 1rem;
 }
-li {
+section {
+  margin: 4rem;
+}
+article {
+  display: flex;
   list-style: none;
-  padding: 1rem;
   border: 1px lightgrey solid;
-  margin-top: 0.25rem;
+  margin-top: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+article img {
+  width: 64px;
+  height: 64px;
+  margin-right: 1rem;
 }

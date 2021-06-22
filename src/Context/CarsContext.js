@@ -5,12 +5,17 @@ const carsProvider = createContext(undefined)
 export const useCars = () => useContext(carsProvider)
 
 export const CarsContext = ({children, value}) => {
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(!value)
     const [state, setState] = useState(value)
 
     useEffect(() => {
-        getCars()
-    }, [])
+        if (!value?.cars) {
+            getCars().then(cars => {
+                setLoading(false)
+                setState({...value, cars})
+            })
+        }
+    }, [value])
 
     return (
         <carsProvider.Provider value={{loading, ...state}}>

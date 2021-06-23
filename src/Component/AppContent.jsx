@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import { useCars } from '../Context/CarsContext';
 import CarListItem from './CarListItem';
 import Cars from "./Cars";
+import {useCart} from "../Context/CartContext";
 
 const AppContent = () => {
   const [searchParams, setSearchParams] = useState({});
@@ -9,6 +10,7 @@ const AppContent = () => {
   const [model, setModel] = useState('');
   const [year, setYear] = useState(0);
   const { cars } = useCars();
+  const { cart } = useCart();
   const [filteredCars, setFilteredCars] = useState(cars);
   const [selectedCar, setSelectedCar] = useState(null);
 
@@ -43,6 +45,7 @@ const AppContent = () => {
 
   return (
     <>
+      <span>{cart.length === 0 ? 'Cart Empty' : `Cart (${cart.length})`}</span>
       <form onSubmit={handleSearchSubmit}>
         <label>
           Make:

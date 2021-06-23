@@ -15,7 +15,7 @@ jest.mock('../Data/cars', () => jest.genMockFromModule('../Data/cars'))
 
 describe('Cars Context', () => {
     it('should use provided cars and not load', () => {
-        const wrapper = ({children}) => <CarsContext value={{cars}}>{children}</CarsContext>
+        const wrapper = ({children}) => <CarsContext value={cars}>{children}</CarsContext>
         const captainHook = renderHook(() => useCars(), {wrapper}).result
 
         expect(captainHook.current.cars).toHaveLength(cars.length)

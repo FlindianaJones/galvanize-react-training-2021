@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import {fireEvent, render, screen} from '@testing-library/react';
 import CarListItem from './CarListItem';
 
 describe('Car List Item', () => {
@@ -10,6 +10,7 @@ describe('Car List Item', () => {
     expect(screen.getByText(/Pram/i)).toBeInTheDocument();
     expect(screen.getByText(/1999/i)).toBeInTheDocument();
   });
+
   it('should contain vehicle image', () => {
     const car = {id: '0001', make: 'Avoid', model: 'Pram', year: 1999, image: 'testurl', color: 'Fuchsia'};
     render(<CarListItem {...car} />);
@@ -19,4 +20,15 @@ describe('Car List Item', () => {
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute('src', car.image);
   });
+
+  it('should call passed onclick when clicked', () => {
+    const car = {id: '0001', make: 'Avoid', model: 'Pram', year: 1999, image: 'testurl', color: 'Fuchsia'};
+    const mockHandler = jest.fn();
+    render(<CarListItem {...car} onClick={mockHandler}/>);
+
+    fireEvent.click(screen.getByText(/Avoid/i))
+
+    expect(mockHandler).toHaveBeenCalledTimes(1)
+    expect(mockHandler).toHaveBeenCalledWith(car)
+  })
 });

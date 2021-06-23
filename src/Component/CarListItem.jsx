@@ -1,11 +1,11 @@
-
-const CarListItem = ({image, color, make, model, year}) => {
-  return (
-    <article data-testid="list-item">
-      <img src={image} alt={color} />
-      {year} {make} {model}
-    </article>
-  )
+const CarListItem = ({onClick, ...car}) => {
+    const clickHandler = () => onClick(car)
+    return (
+        <article data-testid="list-item" onClick={clickHandler}>
+            <img src={car.image} alt={car.color}/>
+            {car.year} {car.make} {car.model}
+        </article>
+    )
 }
 
 export default CarListItem

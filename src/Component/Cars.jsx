@@ -1,6 +1,10 @@
 import CarListItem from "./CarListItem";
+import {useCart} from "../Context/CartContext"
 
 const Cars = ({cars, selectedCar, onSelect, close}) => {
+    const {cart, addItem} = useCart();
+    const handleBuy = () => addItem(selectedCar)
+
     if(!selectedCar) {
         return (
             <>
@@ -19,6 +23,7 @@ const Cars = ({cars, selectedCar, onSelect, close}) => {
                 </div>
                 <nav>
                     <button title='Close' onClick={close}>X</button>
+                    {!cart.find(item => item.id === selectedCar.id) && <button title="Buy" onClick={handleBuy}>Buy</button>}
                 </nav>
             </div>
         )

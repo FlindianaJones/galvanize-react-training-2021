@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
 import { useCars } from '../Context/CarsContext';
-import CarListItem from './CarListItem';
 import Cars from "./Cars";
 import {useCart} from "../Context/CartContext";
 

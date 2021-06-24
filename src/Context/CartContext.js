@@ -10,8 +10,17 @@ export const CartContext = ({ value, children }) => {
     setCartItems([...cartItems, car]);
   };
 
+  const removeItem = (car) => {
+    const newCartItems = [...cartItems]
+    const cartIndex = newCartItems.indexOf(car)
+    if (cartIndex >= 0) {
+      newCartItems.splice(cartIndex, 1)
+      setCartItems(newCartItems)
+    }
+  }
+
   return (
-    <cartProvider.Provider value={{ cart: cartItems, addItem }}>
+    <cartProvider.Provider value={{ cart: cartItems, addItem, removeItem }}>
       {children}
     </cartProvider.Provider>
   );

@@ -5,7 +5,6 @@ const carsProvider = createContext(undefined);
 export const useCars = () => useContext(carsProvider);
 
 export const CarsContext = ({ children, value }) => {
-  console.log('RENDERING CarsContext');
   const [cars, setCars] = useState(value || []);
 
   useEffect(() => {

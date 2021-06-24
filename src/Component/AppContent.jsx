@@ -1,83 +1,33 @@
-import {useEffect, useState} from 'react';
-import { useCars } from '../Context/CarsContext';
-import Cars from "./Cars";
 import {useCart} from "../Context/CartContext";
+import Button from 'react-bootstrap/Button';
+import {useView} from "../Context/ViewContext";
+import Search from "./Search";
+import Cart from "./Cart";
 
 const AppContent = () => {
-  const [searchParams, setSearchParams] = useState({});
-  const [make, setMake] = useState('');
-  const [model, setModel] = useState('');
-  const [year, setYear] = useState(0);
-  const { cars } = useCars();
   const { cart } = useCart();
-  const [filteredCars, setFilteredCars] = useState(cars);
-  const [selectedCar, setSelectedCar] = useState(null);
+  const [view, setView] = useView();
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-
-    setSearchParams({ make, model, year });
-  };
-
-  const handleSelect = (car) => {
-    setSelectedCar(car)
+  const goToCart = () => {
+    setView('cart')
   }
 
-  const handleUnSelect = () => {
-    setSelectedCar(null)
-  }
+  let content = null
 
-  useEffect(() => {
-    let newCars = cars || []
-    if(searchParams.make) {
-      newCars = newCars.filter(car => car.make.toLowerCase().includes(searchParams.make.toLowerCase()))
-    }
-    if(searchParams.model) {
-      newCars = newCars.filter(car => car.model.toLowerCase().includes(searchParams.model.toLowerCase()))
-    }
-    if(searchParams.year) {
-      newCars = newCars.filter(car => car.year.toString().includes(searchParams.year.toString()))
-    }
-    setFilteredCars(newCars)
-    setSelectedCar(null)
-  }, [cars, searchParams])
+  switch (view) {
+    case 'cart':
+      content = <Cart />
+      break
+    default:
+      content = <Search />
+  }
 
   return (
     <>
-      <span>{cart.length === 0 ? 'Cart Empty' : `Cart (${cart.length})`}</span>
-      <form onSubmit={handleSearchSubmit}>
-        <label>
-          Make:
-          <input
-            data-testid="make-search"
-            name="make"
-            value={make}
-            onChange={(e) => setMake(e.target.value)}
-          />
-        </label>
-        <label>
-          Model:
-          <input
-            data-testid="model-search"
-            name="model"
-            value={model}
-            onChange={(e) => setModel(e.target.value)}
-          />
-        </label>
-        <label>
-          Year:
-          <input
-            data-testid="year-search"
-            name="year"
-            value={year}
-            onChange={(e) => setYear(parseInt(e.target.value, 10) || 0)}
-          />
-        </label>
-        <button type="submit">Search</button>
-      </form>
-      <section>
-        <Cars cars={filteredCars} selectedCar={selectedCar} onSelect={handleSelect} close={handleUnSelect} />
-      </section>
+      <nav>
+        <Button variant='outline-primary' onClick={goToCart}>{cart.length === 0 ? 'Cart Empty' : `Cart (${cart.length})`}</Button>
+      </nav>
+      {content}
     </>
   );
 };

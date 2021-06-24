@@ -30,7 +30,6 @@ describe('Cars Context', () => {
         const captainHook = renderHook(() => useCars(), {wrapper}).result
 
         expect(getCars).toHaveBeenCalledTimes(1)
-        expect(captainHook.current.loading).toBeTruthy()
     })
 
     it('should no longer be loading once cars are retrieved', async () => {

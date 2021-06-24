@@ -16,7 +16,7 @@ describe('cars', () => {
   it('should have an inventory', () => {
     renderCars({ cars });
     const listItems = screen.getAllByTestId(/list-item/i);
-    expect(listItems).toHaveLength(5);
+    expect(listItems).toHaveLength(6);
   });
 
   it('should display a single, selected vehicle', () => {

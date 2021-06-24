@@ -1,8 +1,6 @@
 import Cars from "./Cars";
 import {useEffect, useState} from "react";
 import {useCars} from "../Context/CarsContext";
-import {useCart} from "../Context/CartContext";
-import {useView} from "../Context/ViewContext";
 
 const Search = () => {
     const [searchParams, setSearchParams] = useState({});

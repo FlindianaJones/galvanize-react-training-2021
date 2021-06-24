@@ -19,7 +19,7 @@ const Cart = () => {
                 {cart.map(item => {
                     return (
                         <div data-testid='cart-item' className='cart-item' key={item.id}>
-                            <img src={item.image} />
+                            <img src={item.image} alt={`${item.color} ${item.make} ${item.model}`}/>
                             <div>
                                 <h4>{item.make} {item.model}</h4>
                                 <p>{item.color}, {item.year}</p>

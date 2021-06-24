@@ -10,10 +10,11 @@ header {
   border-radius: 1rem;
 }
 
-form {
+form.horizontal {
   background-color: ghostwhite;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: stretch;
 
   label {
     padding: 1rem;
@@ -21,6 +22,38 @@ form {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    flex-grow: 1;
+  }
+
+  input {
+    padding: 0.5rem;
+    width: 85%;
+  }
+
+  button {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: rebeccapurple;
+    color: white;
+    flex: 0;
+    font-weight: bolder;
+    font-size: 1rem;
+  }
+}
+
+form.vertical {
+  background-color: ghostwhite;
+  display: flex;
+  flex-direction: column;
+  max-width: max-content;
+
+  label {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
   }
 
   input {
@@ -67,6 +100,7 @@ article {
 nav {
   display: flex;
   flex-direction: row-reverse;
+  justify-content: space-between;
   padding: 0.5rem;
   align-items: center;
 
@@ -101,4 +135,29 @@ nav {
   img {
     height: 10rem;
   }
+}
+
+.center-content {
+  min-width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+/*The following taken from https://github.com/bvaughn/react-window/issues/375*/
+.no-scrollbars{
+  &::-webkit-scrollbar {
+    width: 1px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+}
+
+.no-scrollbars::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
 }

@@ -48,13 +48,23 @@ describe('App Content', () => {
         expect(screen.getByText(`Cart (1)`)).toBeInTheDocument();
     });
 
-    it('should display shopping cart when clicking on cart in header', () => {
-        renderAppContent(cars);
+    it('should display shopping cart when clicking on cart in nav bar', () => {
+        renderAppContent(cars.slice(0, 5));
 
         fireEvent.click(screen.getByText('Cart (5)'))
 
         const listItems = screen.queryAllByTestId(/list-item/i);
         expect(listItems).toHaveLength(0);
         expect(screen.getAllByTestId('cart-item')).toHaveLength(5)
+    })
+
+    it('should display feedback form when clicking on feedback button in nav bar', () => {
+        renderAppContent()
+
+        fireEvent.click(screen.getByText('Leave Feedback'))
+
+        const listItems = screen.queryAllByTestId(/list-item/i);
+        expect(listItems).toHaveLength(0);
+        expect(screen.getByTestId('feedback-form')).toBeInTheDocument()
     })
 });

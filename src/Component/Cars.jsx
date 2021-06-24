@@ -1,18 +1,22 @@
 import CarListItem from "./CarListItem";
 import {useCart} from "../Context/CartContext"
 import Button from "react-bootstrap/Button";
+import {FixedSizeList} from "react-window";
+import {useCallback} from "react";
+import useWindowDimensions from "../Utility/WindowDimensions";
 
 const Cars = ({cars, selectedCar, onSelect, close}) => {
     const {cart, addItem} = useCart();
     const handleBuy = () => addItem(selectedCar)
+    const { height, width } = useWindowDimensions()
+
+    const Row = useCallback(({index, style}) => { return (<CarListItem key={index} {...cars[index]} onClick={onSelect} style={style}/>) }, [cars, onSelect])
 
     if (!selectedCar) {
         return (
-            <>
-                {cars.map((car, index) => (
-                    <CarListItem key={index} {...car} onClick={onSelect}/>
-                ))}
-            </>
+            <FixedSizeList height={height - 420} width={width * 0.9} itemSize={100} itemCount={cars.length} className='no-scrollbars'>
+                {Row}
+            </FixedSizeList>
         )
     } else {
         return (

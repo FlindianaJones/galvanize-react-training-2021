@@ -10,23 +10,53 @@ header {
   border-radius: 1rem;
 }
 
-form {
+form.horizontal {
   background-color: ghostwhite;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: stretch;
 }
-form label {
+form.horizontal label {
   padding: 1rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  flex-grow: 1;
 }
-form input {
+form.horizontal input {
   padding: 0.5rem;
   width: 85%;
 }
-form button {
+form.horizontal button {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: rebeccapurple;
+  color: white;
+  flex: 0;
+  font-weight: bolder;
+  font-size: 1rem;
+}
+
+form.vertical {
+  background-color: ghostwhite;
+  display: flex;
+  flex-direction: column;
+  max-width: max-content;
+}
+form.vertical label {
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+}
+form.vertical input {
+  padding: 0.5rem;
+  width: 85%;
+}
+form.vertical button {
   margin: 1rem;
   padding: 1rem;
   background-color: rebeccapurple;
@@ -62,6 +92,7 @@ article .right-element {
 nav {
   display: flex;
   flex-direction: row-reverse;
+  justify-content: space-between;
   padding: 0.5rem;
   align-items: center;
 }
@@ -94,6 +125,28 @@ nav button {
 }
 .cart-item img {
   height: 10rem;
+}
+
+.center-content {
+  min-width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+/*The following taken from https://github.com/bvaughn/react-window/issues/375*/
+.no-scrollbars::-webkit-scrollbar {
+  width: 1px;
+}
+.no-scrollbars::-webkit-scrollbar-track {
+  background: transparent;
+}
+.no-scrollbars::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.no-scrollbars::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
 }
 
 /*# sourceMappingURL=App.css.map */

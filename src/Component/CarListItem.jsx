@@ -2,7 +2,7 @@ import {memo} from 'react'
 import {useCart} from '../Context/CartContext'
 import Button from 'react-bootstrap/Button'
 
-const CarListItem = memo(({onClick, ...car}) => {
+const CarListItem = memo(({onClick, style, ...car}) => {
     const {cart, addItem} = useCart()
     const clickHandler = () => onClick(car)
     const handleBuy = (e) => {
@@ -11,7 +11,7 @@ const CarListItem = memo(({onClick, ...car}) => {
     }
 
     return (
-        <article data-testid="list-item" onClick={clickHandler}>
+        <article data-testid="list-item" onClick={clickHandler} style={style}>
             <img src={car.image} alt={car.color}/>
             <span>{car.year} {car.make} {car.model}</span>
             {!cart.find(item => item.id === car.id) ?

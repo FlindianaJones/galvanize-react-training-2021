@@ -19,7 +19,7 @@ describe('Search', () => {
     it('should have an inventory', () => {
         renderSearch();
         const listItems = screen.getAllByTestId(/list-item/i);
-        expect(listItems).toHaveLength(5);
+        expect(listItems).toHaveLength(6);
     });
 
     it('should have search form', () => {
@@ -102,6 +102,6 @@ describe('Search', () => {
 
         expect(screen.queryByText(/\$9001\.99/i)).not.toBeInTheDocument();
         const listItems = screen.getAllByTestId(/list-item/i);
-        expect(listItems).toHaveLength(5);
+        expect(listItems).toHaveLength(6);
     });
 })

@@ -5,9 +5,6 @@ import {FixedSizeList} from "react-window";
 import {useCallback, useEffect, useRef} from "react";
 import useWindowDimensions from "../Utility/WindowDimensions";
 import * as THREE from 'three'
-import {FBXLoader} from "three/examples/jsm/loaders/FBXLoader";
-import {OBJLoader} from 'three/examples/jsm/loaders/OBJLoader'
-import {MTLLoader} from "three/examples/jsm/loaders/MTLLoader";
 import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
 
 const Cars = ({cars, selectedCar, onSelect, close}) => {
@@ -23,29 +20,17 @@ const Cars = ({cars, selectedCar, onSelect, close}) => {
             const renderer = new THREE.WebGLRenderer({alpha: true})
             renderer.setClearColor(0x000000, 0)
             // const loader = new THREE.TextureLoader()
-            const objLoader = new OBJLoader()
-            const fbxLoader = new FBXLoader()
-            const mtlLoader = new MTLLoader()
             const gltfLoader = new GLTFLoader()
             renderer.setSize(640, 480)
             sceneMount?.current?.appendChild(renderer.domElement)
+            const light = new THREE.AmbientLight(0xFFFFFF, 1);
+            scene.add(light);
 
             const ground = new THREE.PlaneGeometry(15, 15, 1, 1)
             const groundMaterial = new THREE.MeshBasicMaterial({color: 'gray', side: THREE.DoubleSide})
             const floor = new THREE.Mesh(ground, groundMaterial)
             floor.rotation.x = Math.PI / 2
             scene.add(floor)
-
-            // mtlLoader.load('./media/sportcar.017.mtl', (mat) => {
-            //     mat.preload();
-            //     const objLoader = new OBJLoader();
-            //     //mat.materials.Material.side = THREE.DoubleSide;
-            //     objLoader.setMaterials(mat)
-            //     objLoader.load('./media/sportcar.017.obj', (car) => {
-            //         scene.add(car)
-            //     })
-            // })
-            const carMaterial = new THREE.MeshBasicMaterial({color: 'red', side: THREE.DoubleSide})
 
             gltfLoader.load('./media/sportcar.017.glb', (loadedObj) => {
                 loadedObj.scene.scale.set(0.025, 0.025, 0.025)

@@ -113,6 +113,8 @@ nav button {
 }
 .car-detail img {
   margin-right: 2rem;
+  width: 10rem;
+  height: 10rem;
 }
 
 .cart-item {
